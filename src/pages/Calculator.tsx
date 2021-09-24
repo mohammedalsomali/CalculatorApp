@@ -9,24 +9,12 @@ const Calc: React.FC = () => {
   const { name } = useParams<{ name: string; }>();
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-          <IonTitle>{name}</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+    
+      
 
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">{name}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name={name} />
-        <div style={{ 'height': '50%' }}>
+       
+        <div style={{ 'height': '30%' }}>
 
         </div>
         <IonGrid >
@@ -101,7 +89,7 @@ const Calc: React.FC = () => {
           </IonRow>
         </IonGrid>
       </IonContent>
-    </IonPage>
+    
   );
 };
 
