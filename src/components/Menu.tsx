@@ -1,66 +1,44 @@
 import {
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonListHeader,
-  IonMenu,
-  IonMenuToggle,
-  IonNote,
-  IonButton,
-  IonRouterLink,
-  IonRoute
-} from '@ionic/react';
-
-import { useLocation } from 'react-router-dom';
-import React from 'react';
-import { scaleSharp , settingsSharp, calculatorSharp, bookSharp } from 'ionicons/icons';
-import './Menu.css';
-
-import Calc from '../pages/Calculator';
-
-
-
-const Menu: React.FC = () => {
-  const location = useLocation();
-
-  // const [ inside, setinside ] = React.useState("Primary Button")
-
-  return (
-    <IonMenu contentId="main" type="overlay">
-      <IonContent>
-        <IonList id="inbox-list">
-          <IonListHeader>FI</IonListHeader>
-          <IonNote> FireFly integratoins</IonNote>
-          
-          <IonButton color="dark" >
-
-
-            <IonIcon slot="start" icon={calculatorSharp} />
-            Calculator
-          </IonButton>
-          <IonButton >
-            <IonIcon slot="start" icon={scaleSharp} />
-
-             Convertor 
-          </IonButton>
-          <IonButton>
-          <IonIcon slot="start" icon={bookSharp} />
-
-              Log 
-          </IonButton>
-          <IonButton>
-          <IonIcon slot="start" icon={settingsSharp} />
-
-              Settings
-          </IonButton>
-        </IonList>
-
-       
-      </IonContent>
-    </IonMenu>
-  );
-};
-
-export default Menu;
+    IonMenu,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonList,
+    IonMenuToggle,
+    IonItem,
+    IonLabel,
+    IonCheckbox,
+    IonIcon,
+  } from "@ionic/react";
+  import React from "react";
+  
+  export const Menu = () => {
+    return (
+      <IonMenu  contentId="main" >
+        <IonHeader>
+          <IonToolbar color="light">
+            <IonTitle>FireFly</IonTitle>
+            <IonCheckbox slot="end" color="primary" />
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonList>
+            <IonMenuToggle auto-hide="false" >
+              <IonItem button routerLink={"/home"} routerDirection="none">
+                <IonLabel>Calculator</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+            <IonMenuToggle auto-hide="false">
+              <IonItem button routerLink={"/page-1"} routerDirection="none">
+                <IonLabel>Log</IonLabel>
+              </IonItem>
+              <IonItem button routerLink={"/page-2"} routerDirection="none">
+                <IonLabel>Page Two</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+          </IonList>
+        </IonContent>
+      </IonMenu>
+    );
+  };
