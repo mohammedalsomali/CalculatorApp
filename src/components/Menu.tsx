@@ -8,52 +8,24 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
-  IonButton
+  IonButton,
+  IonRouterLink,
+  IonRoute
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, heartOutline, heartSharp, mailOutline, paperPlaneOutline, scaleSharp , settingsSharp, calculatorSharp, bookSharp } from 'ionicons/icons';
+import React from 'react';
+import { scaleSharp , settingsSharp, calculatorSharp, bookSharp } from 'ionicons/icons';
 import './Menu.css';
 
-interface AppPage {
-  url: string;
-  iosIcon: string;
-  mdIcon: string;
-  title: string;
-}
+import Calc from '../pages/Calculator';
 
-// const appPages: AppPage[] = [
-//   {
-//     title: 'Calculator',
-//     url: './page/calculator',
-//     iosIcon: mailOutline,
-//     mdIcon: calculatorSharp
-//   },
-//   {
-//     title: 'Unit Convertor',
-//     url: './pages/Convertor',
-//     iosIcon: paperPlaneOutline,
-//     mdIcon: scaleSharp
-//   },
-//   {
-//     title: 'Log',
-//     url: './page/Log',
-//     iosIcon: heartOutline,
-//     mdIcon: bookSharp
-//   },
-//   {
-//     title: 'Settings',
-//     url: './page/Settings',
-//     iosIcon: archiveOutline,
-//     mdIcon: settingsSharp,
-    
-//   }
-  
-// ];
 
 
 const Menu: React.FC = () => {
   const location = useLocation();
+
+  // const [ inside, setinside ] = React.useState("Primary Button")
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -61,24 +33,17 @@ const Menu: React.FC = () => {
         <IonList id="inbox-list">
           <IonListHeader>FI</IonListHeader>
           <IonNote> FireFly integratoins</IonNote>
-          {/* {appPages.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url}  lines="none" detail={false}>
-                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })} */}
-          <IonButton>
-              <IonIcon slot="start" icon={calculatorSharp} />
-              Calculator
+          
+          <IonButton color="dark" >
+
+
+            <IonIcon slot="start" icon={calculatorSharp} />
+            Calculator
           </IonButton>
-          <IonButton>
+          <IonButton >
             <IonIcon slot="start" icon={scaleSharp} />
 
-             Unit Convertor 
+             Convertor 
           </IonButton>
           <IonButton>
           <IonIcon slot="start" icon={bookSharp} />

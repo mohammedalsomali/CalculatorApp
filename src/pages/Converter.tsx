@@ -3,7 +3,7 @@ import { IonButton, IonButtons, IonContent, IonHeader, IonInput, IonMenuButton, 
 import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 import './Page.css';
-import Calc from './Calculator'
+
 const Convert: React.FC = () => {
 
   

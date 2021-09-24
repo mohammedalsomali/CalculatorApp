@@ -9,7 +9,7 @@ import { type } from 'os';
 const Page: React.FC = () => {
 
   const { name } = useParams<{ name: string; }>();
-  console.log(name,typeof {name} )
+  // console.log(name,typeof {name} )
   
   // const getcontent = () => {
   //   console.log(name)
@@ -40,7 +40,7 @@ const Page: React.FC = () => {
 
       <IonContent fullscreen>
         
-        <Convert/>
+        <Calc/>
 
       </IonContent>
     </IonPage>
