@@ -1,23 +1,29 @@
 ion-button {
-    width: 60%;
-    -height: 90%;
+    width: 99%;
+    height: 100%;
     font-size: larger;
+    color: pink;
+    --background: transparent;
+    border-style: solid;
+    border-radius: 50%;
     
 }
 #zerobtn {
-    width: 100%;
+    border-radius: 45%;
+
+    
 
     
 
 }
 
-div {
+.displaydiv , .resultsdiv {
 
     align-items: center;
     font-size: larger;
-    overflow-y: scroll;
-    
+    overflow-y: hidden;
     text-align: center;
+    
 }
 
 
@@ -25,15 +31,28 @@ ion-grid {
     --ion-grid-padding: 0;
     --ion-grid-column-padding: 0;
     --ion-grid-row-padding: 0;
+    /* --ion-grid-width-column: small; */
+    
     
     
     
 }
 
-#resultsbtn {
-    height: 100%;
-    padding-left: 20%;
-    width: 70%;
+
+ion-row {
+    height: 78px;
+  }
+
+ion-col {
+    -size: 4;
+}
+
+
+#resultsBtn {
+    height: 150px;
+    /* padding-left: 20%; */
+    width: 98%;
+    border-radius: 45%;
 
    
 }
@@ -47,4 +66,12 @@ ion-grid {
 
 #secondrow {
     width: 75%;
+}
+
+
+
+.parentdiv {
+    display: grid;
+    grid-template-columns: 1fr 0.4fr;
+    height: 65%;
 }
