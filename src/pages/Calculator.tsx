@@ -4,9 +4,16 @@ import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 import './calculator.css'
 
+
 let currentval = ''
 let prevval = 0
 let operator
+
+
+
+const logdata = {}
+
+
 
 const Calc: React.FC = () => {
   
@@ -33,7 +40,7 @@ const Calc: React.FC = () => {
 
 
   function calculate() {
-    console.log(operator)
+    
 
     let calculated 
     let current = parseFloat(currentval)
@@ -66,10 +73,9 @@ const Calc: React.FC = () => {
       
     }
 
-    // setresults(calculated)
-    // setdisplayvalue([])
-    
-    // prevval = calculated
+
+    logdata[calculated] = prevval + operator + current
+    console.log(logdata)
     current = 0
     setresults(currentval)
     prevval = parseFloat(currentval)
@@ -105,6 +111,23 @@ const Calc: React.FC = () => {
   }
 
 
+  function showhistory(){
+
+    const showdiv = document.querySelector('.historylog')
+    for (let [k, v] of Object.entries(logdata)) {
+      let logdiv = document.createElement('div')
+      let logval = document.createElement('p')
+      let logres = document.createElement('p')
+      logres.innerHTML = k;
+      logval.innerHTML = logdata[k];
+
+      logdiv.appendChild(logval)
+      logdiv.appendChild(logres)
+      showdiv.appendChild(logdiv)
+    }
+  }
+
+
 
   return (
 
@@ -113,6 +136,7 @@ const Calc: React.FC = () => {
 
 
     <IonContent fullscreen>
+      <div className='historylog' style={{'display': 'hidden'}}></div>
 
       <div className='resultsdiv' style={{ 'height': '32%', 'justifyContent': 'center', 'alignContent': 'center' }}>
         <div style={{ 'height': '30%', 'color': 'pink' }}> {results} </div>
@@ -140,7 +164,7 @@ const Calc: React.FC = () => {
               </IonRow>
               <IonRow>
                 <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('7')}> 7 </IonButton>
+                  <IonButton shape='round' size='large' onClick={showhistory}> 7 </IonButton>
                 </IonCol>
                 <IonCol>
                   <IonButton shape='round' size='large' onClick={() => CalcDisplay('8')}> 8 </IonButton>

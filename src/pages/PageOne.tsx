@@ -2,7 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons } from
 import React from 'react';
 // import './Home.css';
 import { NavButtons } from '../components/NavButtons';
-import Convert from './Converter';
+import Convert from './Log';
 
 const PageOne: React.FC = () => {
   return (
