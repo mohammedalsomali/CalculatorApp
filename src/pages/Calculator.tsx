@@ -151,109 +151,129 @@ const Calc: React.FC = () => {
 
 
     <IonContent fullscreen>
-      <div className='historylog' style={{'display': 'none'}}></div>
+      <div className='historylog' style={{ 'display': 'none' }}></div>
 
-      <div className='resultsparentdiv' style={{ 'height': '32%', 'justifyContent': 'center', 'alignContent': 'center' }}>
+      <div className='resultsparentdiv' style={{ 'height': '45%', 'justifyContent': 'center', 'alignContent': 'center' }}>
         <div className='resultsdiv' style={{ 'height': '50%', 'color': 'pink' }}> {results} </div>
 
-        <div className='diaplaydiv' style={{ 'height': '50%', 'color': 'pink' }}> {displayvalue} </div>
+        <div className='displaydiv' style={{ 'height': '50%', 'color': 'pink' }}> {displayvalue} </div>
 
       </div>
 
 
+      <div className='screen'>
+        <div className='calccontainer' >
+          <div className='btndiv'>
+            <IonButton id='historybtn' onClick={showhistory}>
+              <IonIcon></IonIcon>
 
-      <div>
-        <div className='btndiv'>
-          <IonButton id='historybtn'  onClick={showhistory}>
-            <IonIcon></IonIcon>
-            
-          </IonButton>
-        </div>
-        <div className="parentdiv">
-          <div >
-            <IonGrid >
-              <IonRow>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={reinitiize}> C </IonButton>
-                </IonCol>
-                <IonCol>
-                </IonCol>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => operation('÷')} color="warning"> ÷ </IonButton>
-                </IonCol>
-
-              </IonRow>
-              <IonRow>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('8')}> 7 </IonButton>
-                </IonCol>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('8')}> 8 </IonButton>
-
-                </IonCol>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('9')}> 9 </IonButton>
-                </IonCol>
-
-              </IonRow>
-              <IonRow >
-                <IonCol >
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('4')}> 4 </IonButton>
-                </IonCol>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('5')}> 5 </IonButton>
-
-                </IonCol>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('6')}> 6 </IonButton>
-                </IonCol>
-
-              </IonRow>
-              <IonRow>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('1')}> 1 </IonButton>
-                </IonCol>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('2')}> 2 </IonButton>
-                </IonCol>
-                <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('3')}> 3 </IonButton>
-                </IonCol>
-              </IonRow>
-            </IonGrid>
-
+            </IonButton>
           </div>
-          <div >
-            <IonGrid>
-              <IonCol>
+          <div className="parentdiv">
+            <div >
+              <IonGrid >
+                <IonRow>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={reinitiize}> C </IonButton>
+                  </IonCol>
+                  <IonCol>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('÷')} > ÷ </IonButton>
+                  </IonCol>
+
+                </IonRow>
+                <IonRow>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('8')}> 7 </IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('8')}> 8 </IonButton>
+
+                  </IonCol>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('9')}> 9 </IonButton>
+                  </IonCol>
+
+                </IonRow>
                 <IonRow >
-                  <IonButton shape='round' size='large' onClick={() => operation('x')}> x </IonButton>
+                  <IonCol >
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('4')}> 4 </IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('5')}> 5 </IonButton>
+
+                  </IonCol>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('6')}> 6 </IonButton>
+                  </IonCol>
+
                 </IonRow>
                 <IonRow>
-                  <IonButton shape='round' size='large' onClick={() => operation('-')}> - </IonButton>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('1')}> 1 </IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('2')}> 2 </IonButton>
+                  </IonCol>
+                  <IonCol>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('3')}> 3 </IonButton>
+                  </IonCol>
                 </IonRow>
-                <IonRow>
-                  <IonButton shape='round' size='large' onClick={() => operation('+')}> + </IonButton>
-                </IonRow>
-                <IonRow>
-                  <IonButton id='resultsBtn' shape='round' size='large' onClick={calculate}> = </IonButton>
-                </IonRow>
-              </IonCol>
+              </IonGrid>
+
+            </div>
+            <div >
+              <IonGrid>
+                <IonCol>
+                  <IonRow >
+                    <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('x')}> x </IonButton>
+                  </IonRow>
+                  <IonRow>
+                    <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('-')}> - </IonButton>
+                  </IonRow>
+                  <IonRow>
+                    <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('+')}> + </IonButton>
+                  </IonRow>
+                  <IonRow>
+                    <IonButton className='opbutton' id='resultsBtn' shape='round' size='large' onClick={calculate}> = </IonButton>
+                  </IonRow>
+                </IonCol>
+              </IonGrid>
+
+            </div>
+          </div>
+          <div className='zerodiv'>
+            <IonGrid>
+              <IonRow>
+                <IonCol size='5.7'>
+                  <IonButton id='zerobtn' shape='round' size='large' onClick={() => CalcDisplay(0)}> 0 </IonButton>
+                </IonCol>
+                <IonCol size='3'>
+                  <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('.')}> . </IonButton>
+                </IonCol>
+              </IonRow>
             </IonGrid>
 
           </div>
         </div>
-        <div className='zerodiv'>
-          <IonGrid>
-            <IonRow>
-              <IonCol size='5.7'>
-                <IonButton id='zerobtn' shape='round' size='large' onClick={() => CalcDisplay(0)}> 0 </IonButton>
-              </IonCol>
-              <IonCol size='3'>
-                <IonButton shape='round' size='large' onClick={() => CalcDisplay('.')}> . </IonButton>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
+        <div className='hiddenside'>
+        <IonGrid>
+                <IonCol>
+                  <IonRow >
+                    <IonButton className='sidebutton' shape='round' size='large' onClick={() => operation('x')}> x </IonButton>
+                  </IonRow>
+                  <IonRow>
+                    <IonButton className='sidebutton' shape='round' size='large' onClick={() => operation('-')}> - </IonButton>
+                  </IonRow>
+                  <IonRow>
+                    <IonButton className='sidebutton' shape='round' size='large' onClick={() => operation('+')}> + </IonButton>
+                  </IonRow>
+                  <IonRow>
+                    <IonButton className='sidebutton'  shape='round' size='large' onClick={calculate}> = </IonButton>
+                  </IonRow>
+                </IonCol>
+              </IonGrid>
 
         </div>
       </div>

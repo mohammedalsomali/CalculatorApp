@@ -12,6 +12,7 @@ import {
     IonIcon,
   } from "@ionic/react";
   import React from "react";
+  import './Menu.css'
   
   export const Menu = () => {
     return (

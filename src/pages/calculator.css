@@ -1,39 +1,24 @@
-ion-button {
-    width: 99%;
-    height: 100%;
-    font-size: larger;
-    color: pink;
-    --background: transparent;
-    border-style: solid;
-    border-radius: 50%;
-    
-}
-#zerobtn {
-    border-radius: 45%;
 
-    
 
-    
 
-}
-
-.displaydiv , .resultsdiv, .btndiv {
-
-    align-items: center;
-    font-size: larger;
+.ion-page {
     overflow-y: hidden;
-    text-align: center;
-    font-size: 60px;
-    /* height: 50%; */
-    width: 100%;
-    display: grid;
-    
-    
 }
+
+
 
 .resultsparentdiv {
     display: block;
     
+}
+
+
+.btndiv {
+    align-items: center;
+    font-size: larger;
+    overflow-y: hidden;
+    text-align: center;
+
 }
 
 
@@ -58,14 +43,6 @@ ion-col {
 }
 
 
-#resultsBtn {
-    height: 150px;
-    /* padding-left: 20%; */
-    width: 98%;
-    border-radius: 45%;
-
-   
-}
 
 #resutlscol {
     height: 100px;
@@ -83,7 +60,7 @@ ion-col {
 .parentdiv {
     display: grid;
     grid-template-columns: 1fr 0.4fr;
-    height: 65%;
+    height: 310px;
     
 }
 
@@ -91,4 +68,133 @@ ion-col {
 #historybtn {
     height: 0px;
     width: 80%;
+    
+}
+
+
+@media all and (orientation:portrait) {
+
+    /* Styles for Portrait screen */ 
+
+    .displaydiv , .resultsdiv {
+
+        align-items: center;
+        font-size: larger;
+        overflow-y: hidden;
+        text-align: center;
+        font-size: 60px;
+        /* height: 50%; */
+        width: 100%;
+        display: grid;
+        
+        
+    }
+
+    
+    .ionbutton {
+        width: 99%;
+        height: 100%;
+        font-size: larger;
+        color:white ;
+        --background: transparent;
+        border-style: solid;
+        border-radius: 50%;
+        
+    }
+
+
+    .opbutton {
+        width: 99%;
+        height: 100%;
+        font-size: larger;
+        color:black ;
+        --background: yellow;
+        
+        border-radius: 50%;
+        
+    }
+
+    #zerobtn {
+        width: 178px;
+        /* padding-left: 20%; */
+        height: 99%;
+        border-radius: 45%;
+        --background: transparent;
+        border-style: solid;
+        color: white;
+        
+    
+    }
+
+    #resultsBtn {
+        height: 150px;
+        padding-left: 7%; 
+        width: 90%;
+        border-radius: 45%;
+        border-style: none;
+        
+        
+    
+       
+    }
+    #historybtn {
+        height: 3px;
+        width: 80%;
+        --background: white;
+        
+    }
+
+    .screen {
+        
+        overflow-y: hidden;
+    }
+    
+
+
+    
+
+
+
+
+
+.calccontainer {
+    
+    width: 375px;
+    height: 415px;
+    overflow-y: hidden;
+    /* background-color: blue; */
+}
+.hiddenside {
+    display:none;
+    width: 0px;
+}
+}  
+
+
+@media all and (orientation:landscape) {  
+    /* Styles for Landscape screen */  
+
+    
+    
+ .hiddenside {
+    
+    display:block;
+    width:100px;
+    height:100px;
+    background:blue;
+}
+}  
+
+
+.screen {
+    display: grid;
+    grid-template-columns: 1fr 0.4fr;
+    overflow-y: hidden;
+}
+
+
+.zerodiv {
+    margin: 0;
+    padding: 0;
+    
 }
