@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 export const NavButtons = () => {
   const [mQuery, setMQuery] = React.useState<any>({
-    matches: window.innerWidth > 900 ? true : false,
+    matches: window.innerWidth > 50000 ? true : false,
   });
 
   useEffect(() => {
@@ -22,9 +22,9 @@ export const NavButtons = () => {
         <IonMenuButton />
       ) : (
         <>
-          <IonButton routerLink={"/home"}>Home </IonButton>
-          <IonButton routerLink={"/page-1"}>One </IonButton>
-          <IonButton routerLink={"/page-2"}>Two</IonButton>
+          <IonButton routerLink={"/home"}> </IonButton>
+
+          
         </>
       )}
     </div>

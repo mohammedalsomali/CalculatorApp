@@ -95,7 +95,7 @@ ion-col {
         width: 99%;
         height: 100%;
         font-size: larger;
-        color:white ;
+        color:pink ;
         --background: transparent;
         border-style: solid;
         border-radius: 50%;
@@ -107,7 +107,7 @@ ion-col {
         width: 99%;
         height: 100%;
         font-size: larger;
-        color:black ;
+        color: black ;
         --background: yellow;
         
         border-radius: 50%;
@@ -121,7 +121,7 @@ ion-col {
         border-radius: 45%;
         --background: transparent;
         border-style: solid;
-        color: white;
+        color: pink;
         
     
     }
@@ -140,7 +140,7 @@ ion-col {
     #historybtn {
         height: 3px;
         width: 80%;
-        --background: white;
+        --background:pink;
         
     }
 

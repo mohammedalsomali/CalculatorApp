@@ -22,9 +22,8 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import PageOne from './pages/PageOne';
+
 import { Menu } from './components/Menu';
-import PageTwo from './pages/PageTwo';
 
 const App: React.FC = () => (
   <IonApp>
@@ -32,8 +31,7 @@ const App: React.FC = () => (
       <Menu/>
       <IonRouterOutlet  id="main">
         <Route path="/home" component={Home} exact={true} />
-        <Route path="/page-1" component={PageOne} exact={true} />
-        <Route path="/page-2" component={PageTwo} exact={true} />
+        
         <Route exact path="/" render={() => <Redirect to="/home" />} />
       </IonRouterOutlet>
     </IonReactRouter>

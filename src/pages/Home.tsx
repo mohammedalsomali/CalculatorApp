@@ -13,7 +13,7 @@ const Home: React.FC = () => {
           <IonButtons slot="start">
             <NavButtons/>
           </IonButtons>
-          <IonTitle>HOME</IonTitle>
+          <IonTitle></IonTitle>
 
         </IonToolbar>
       </IonHeader>

@@ -6,21 +6,30 @@ import {
     IonContent,
     IonList,
     IonMenuToggle,
+    IonToggle,
     IonItem,
     IonLabel,
     IonCheckbox,
     IonIcon,
   } from "@ionic/react";
-  import React from "react";
-  import './Menu.css'
+import React from "react";
+import {moon } from "ionicons/icons"
+import './Menu.css'
+import jQuery from 'jquery'
+
   
   export const Menu = () => {
+
+    const toggleDarkModeHandler = () => {
+      document.body.classList.toggle("dark");
+    };
+
     return (
-      <IonMenu  contentId="main" >
+      <IonMenu  contentId="main">
         <IonHeader>
-          <IonToolbar color="light">
+          <IonToolbar >
             <IonTitle>FireFly</IonTitle>
-            <IonCheckbox slot="start" color="primary"/> RAD
+            
           </IonToolbar>
         </IonHeader>
         <IonContent>
@@ -31,11 +40,23 @@ import {
               </IonItem>
             </IonMenuToggle>
             <IonMenuToggle auto-hide="false">
-              <IonItem button routerLink={"/page-1"} routerDirection="none">
-                <IonLabel>Log</IonLabel>
+
+              <IonItem button  routerDirection="none">
+              <IonToggle
+                slot="start"
+                name="darkMode"
+                onIonChange={toggleDarkModeHandler}
+              />
+              DarkMode
+
               </IonItem>
-              <IonItem button routerLink={"/page-2"} routerDirection="none">
-                <IonLabel>Page Two</IonLabel>
+              <IonItem button  routerDirection="none">
+              <IonToggle
+                slot="start"
+                name="DEG"
+              />
+              DEG
+
               </IonItem>
             </IonMenuToggle>
           </IonList>

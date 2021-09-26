@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 import './calculator.css'
-
+import  $  from 'jquery'
 
 let currentval = ''
 let prevval = 0
 let operator
+let algho
 
 
 
@@ -33,20 +34,20 @@ const Calc: React.FC = () => {
       return
     }
     currentval = currentval + BtnValue
-    console.log(currentval)
+    // console.log(currentval)
     setdisplayvalue(oldArray => [...oldArray, BtnValue]);
 
   }
 
 
   function calculate() {
-    let oplist = ['sin(', 'cos(', 'tan(', 'log(', 'ln(', '^', '√']
     
-
+    
     let calculated 
     let current = parseFloat(currentval)
     console.log(current, prevval)
-    if(prevval == 0 || currentval == '' || oplist.includes(operator) == false) return
+    if(prevval == 0 || currentval == '') return
+    console.log(current, prevval)
 
     switch (operator) {
       case '+':
@@ -65,37 +66,7 @@ const Calc: React.FC = () => {
         calculated = prevval / current
         currentval = calculated
         break
-      case '^':
-        calculated = current ** 2
-        currentval = calculated
-        break
-      case 'ln':
-        calculated = Math.log(current)
-        currentval = calculated
-        break
-      case 'log':
-        calculated = Math.log10(current)
-        currentval = calculated
-        break
-      case 'sin(':
-        calculated = Math.sin(current)
-        currentval = calculated
-        break
-      case 'cos(':
-        calculated = Math.cos(current)
-        currentval = calculated
-        break
-      case 'Tan(':
-        calculated = Math.tan(current)
-        currentval = calculated
-        break
-      case '√':
-        calculated = current ** (1 / 2)
-        currentval = calculated
-        break
-        
-      default:
-        return
+      
 
     // operator = ''
 
@@ -111,6 +82,7 @@ const Calc: React.FC = () => {
     currentval = ''
     setdisplayvalue([])
     
+    
 
 
 
@@ -121,6 +93,64 @@ const Calc: React.FC = () => {
     
 
 
+  }
+
+
+  function trig_log( trig ){
+    let current = parseInt(currentval)
+    let calculated
+
+    switch (trig) {
+      case '^2':
+        calculated = current ** 2
+        
+        
+
+        break
+      case 'ln':
+        calculated = Math.log(current)
+        
+        break
+      case 'log':
+        calculated = Math.log10(current)
+        // currentval = calculated
+        break
+      case 'sin(':
+        calculated = Math.sin(current)
+        // currentval = calculated
+        break
+      case 'cos(':
+        calculated = Math.cos(current)
+        // currentval = calculated
+        break
+      case 'Tan(':
+        calculated = Math.tan(current)
+        // currentval = calculated
+        break
+      case '√':
+        calculated = current ** (1 / 2)
+        // currentval = calculated
+        break
+
+      default:
+        return
+    }
+    
+    if(trig == '^2'){
+      logdata[calculated] = currentval + ' ' +  trig +  ' ' + '='
+    }
+    else {
+      logdata[calculated] =  trig +  ' ' + currentval + ' ' +  '='
+
+    }
+    console.log(logdata)
+    currentval = calculated
+    current = 0
+    setresults(currentval)
+    prevval = parseFloat(currentval)
+    currentval = ''
+    setdisplayvalue([])
+    
   }
 
 
@@ -144,19 +174,9 @@ const Calc: React.FC = () => {
     const showdiv = document.querySelector<HTMLElement>('.historylog')
     const hidediv = document.querySelector<HTMLElement>('.screen')
     
+    showdiv.innerHTML = ''
     
-    console.log(showdiv.style.visibility)
-    if( showdiv.style.visibility == 'visible' ){
-      showdiv.innerHTML= ''
-      showdiv.style.visibility = 'hidden'
-      hidediv.style.visibility = 'visible'
-      
-     
-
-      
-      
-      return
-    }
+    
 
     for (let [k, v] of Object.entries(logdata)) {
       let logdiv = document.createElement('div')
@@ -169,8 +189,10 @@ const Calc: React.FC = () => {
       logdiv.appendChild(logres)
       showdiv.appendChild(logdiv)
     }
-    showdiv.style.visibility = 'visible'
-    hidediv.style.visibility = 'hidden'
+    // showdiv.style.visibility = 'visible'
+    // hidediv.style.visibility = 'hidden'
+    $( ".historylog" ).first().fadeToggle( "slow", "linear" );
+    $( ".screen" ).first().fadeToggle( "slow", "linear" );
     
 
   }
@@ -184,7 +206,7 @@ const Calc: React.FC = () => {
 
 
     <IonContent fullscreen>
-      <div className='historylog' > </div>
+      <div className='historylog' style={{'display': 'none'}}> </div>
 
       <div className='resultsparentdiv' style={{ 'height': '45%', 'justifyContent': 'center', 'alignContent': 'center' }}>
         <div className='resultsdiv' style={{ 'height': '50%', 'color': 'pink' }}> {results} </div>
@@ -218,7 +240,7 @@ const Calc: React.FC = () => {
                 </IonRow>
                 <IonRow>
                   <IonCol>
-                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('8')}> 7 </IonButton>
+                    <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('7')}> 7 </IonButton>
                   </IonCol>
                   <IonCol>
                     <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('8')}> 8 </IonButton>
@@ -294,18 +316,18 @@ const Calc: React.FC = () => {
         <IonGrid>
             <IonRow>
               <IonCol>
-                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('sin(')}> Sin </IonButton>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => trig_log('sin(')}> Sin </IonButton>
               </IonCol>
               <IonCol>
-                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('cos(')}> Cos </IonButton>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => trig_log('cos(')}> Cos </IonButton>
               </IonCol>
             </IonRow>
             <IonRow>
               <IonCol>
-                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('Tan(')}> Tan </IonButton>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => trig_log('Tan(')}> Tan </IonButton>
               </IonCol>
               <IonCol>
-                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('log(')}> log </IonButton>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => trig_log('log(')}> log </IonButton>
               </IonCol>
             </IonRow>
             <IonRow>
@@ -313,15 +335,15 @@ const Calc: React.FC = () => {
                 <IonButton className='opbutton' shape='round' size='large' onClick={() => CalcDisplay('3.14')}> π </IonButton>
               </IonCol>
               <IonCol>
-                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('ln(')}> ln </IonButton>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => trig_log('ln(')}> ln </IonButton>
               </IonCol>
             </IonRow>
             <IonRow>
               <IonCol>
-                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('^')}> ^ </IonButton>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => trig_log('^2')}> ^2 </IonButton>
               </IonCol>
               <IonCol>
-                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('√')}> √ </IonButton>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => trig_log('√')}> √ </IonButton>
               </IonCol>
             </IonRow>
                     
