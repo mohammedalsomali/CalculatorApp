@@ -40,12 +40,13 @@ const Calc: React.FC = () => {
 
 
   function calculate() {
+    let oplist = ['sin(', 'cos(', 'tan(', 'log(', 'ln(', '^', '√']
     
 
     let calculated 
     let current = parseFloat(currentval)
     console.log(current, prevval)
-    if(prevval == 0 || currentval == '') return
+    if(prevval == 0 || currentval == '' || oplist.includes(operator) == false) return
 
     switch (operator) {
       case '+':
@@ -64,6 +65,34 @@ const Calc: React.FC = () => {
         calculated = prevval / current
         currentval = calculated
         break
+      case '^':
+        calculated = current ** 2
+        currentval = calculated
+        break
+      case 'ln':
+        calculated = Math.log(current)
+        currentval = calculated
+        break
+      case 'log':
+        calculated = Math.log10(current)
+        currentval = calculated
+        break
+      case 'sin(':
+        calculated = Math.sin(current)
+        currentval = calculated
+        break
+      case 'cos(':
+        calculated = Math.cos(current)
+        currentval = calculated
+        break
+      case 'Tan(':
+        calculated = Math.tan(current)
+        currentval = calculated
+        break
+      case '√':
+        calculated = current ** (1 / 2)
+        currentval = calculated
+        break
         
       default:
         return
@@ -74,7 +103,7 @@ const Calc: React.FC = () => {
     }
 
 
-    logdata[calculated] = prevval + operator + current
+    logdata[calculated] = prevval + ' ' +  operator + ' ' + current + ' ' + '='
     console.log(logdata)
     current = 0
     setresults(currentval)
@@ -113,22 +142,26 @@ const Calc: React.FC = () => {
 
   function showhistory(){
     const showdiv = document.querySelector<HTMLElement>('.historylog')
-    const hidediv = document.querySelector<HTMLElement>('.parentdiv')
-    const zerodiv = document.querySelector<HTMLElement>('.zerodiv')
+    const hidediv = document.querySelector<HTMLElement>('.screen')
     
-    console.log(showdiv.style.display)
-    if(showdiv.style.display == 'block'){
-      showdiv.style.display = 'none'
-      hidediv.style.display = 'grid'
-      zerodiv.style.display = 'flex'
+    
+    console.log(showdiv.style.visibility)
+    if( showdiv.style.visibility == 'visible' ){
+      showdiv.innerHTML= ''
+      showdiv.style.visibility = 'hidden'
+      hidediv.style.visibility = 'visible'
+      
+     
+
+      
       
       return
     }
 
     for (let [k, v] of Object.entries(logdata)) {
       let logdiv = document.createElement('div')
-      let logval = document.createElement('p')
-      let logres = document.createElement('p')
+      let logval = document.createElement('ul')
+      let logres = document.createElement('ul')
       logres.innerHTML = k;
       logval.innerHTML = logdata[k];
 
@@ -136,9 +169,9 @@ const Calc: React.FC = () => {
       logdiv.appendChild(logres)
       showdiv.appendChild(logdiv)
     }
-    showdiv.style.display = 'block'
-    hidediv.style.display = 'none'
-    zerodiv.style.display = 'none'
+    showdiv.style.visibility = 'visible'
+    hidediv.style.visibility = 'hidden'
+    
 
   }
 
@@ -151,7 +184,7 @@ const Calc: React.FC = () => {
 
 
     <IonContent fullscreen>
-      <div className='historylog' style={{ 'display': 'none' }}></div>
+      <div className='historylog' > </div>
 
       <div className='resultsparentdiv' style={{ 'height': '45%', 'justifyContent': 'center', 'alignContent': 'center' }}>
         <div className='resultsdiv' style={{ 'height': '50%', 'color': 'pink' }}> {results} </div>
@@ -160,15 +193,15 @@ const Calc: React.FC = () => {
 
       </div>
 
-
-      <div className='screen'>
-        <div className='calccontainer' >
-          <div className='btndiv'>
+      <div className='btndiv'>
             <IonButton id='historybtn' onClick={showhistory}>
               <IonIcon></IonIcon>
 
             </IonButton>
           </div>
+      <div className='screen'>
+        <div className='calccontainer' >
+          
           <div className="parentdiv">
             <div >
               <IonGrid >
@@ -250,7 +283,7 @@ const Calc: React.FC = () => {
                   <IonButton id='zerobtn' shape='round' size='large' onClick={() => CalcDisplay(0)}> 0 </IonButton>
                 </IonCol>
                 <IonCol size='3'>
-                  <IonButton className='ionbutton' shape='round' size='large' onClick={() => CalcDisplay('.')}> . </IonButton>
+                  <IonButton className='ionbutton' id='dotbtn' shape='round' size='large' onClick={() => CalcDisplay('.')}> . </IonButton>
                 </IonCol>
               </IonRow>
             </IonGrid>
@@ -259,21 +292,40 @@ const Calc: React.FC = () => {
         </div>
         <div className='hiddenside'>
         <IonGrid>
-                <IonCol>
-                  <IonRow >
-                    <IonButton className='sidebutton' shape='round' size='large' onClick={() => operation('x')}> x </IonButton>
-                  </IonRow>
-                  <IonRow>
-                    <IonButton className='sidebutton' shape='round' size='large' onClick={() => operation('-')}> - </IonButton>
-                  </IonRow>
-                  <IonRow>
-                    <IonButton className='sidebutton' shape='round' size='large' onClick={() => operation('+')}> + </IonButton>
-                  </IonRow>
-                  <IonRow>
-                    <IonButton className='sidebutton'  shape='round' size='large' onClick={calculate}> = </IonButton>
-                  </IonRow>
-                </IonCol>
-              </IonGrid>
+            <IonRow>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('sin(')}> Sin </IonButton>
+              </IonCol>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('cos(')}> Cos </IonButton>
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('Tan(')}> Tan </IonButton>
+              </IonCol>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('log(')}> log </IonButton>
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => CalcDisplay('3.14')}> π </IonButton>
+              </IonCol>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('ln(')}> ln </IonButton>
+              </IonCol>
+            </IonRow>
+            <IonRow>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('^')}> ^ </IonButton>
+              </IonCol>
+              <IonCol>
+                <IonButton className='opbutton' shape='round' size='large' onClick={() => operation('√')}> √ </IonButton>
+              </IonCol>
+            </IonRow>
+                    
+          </IonGrid>
 
         </div>
       </div>

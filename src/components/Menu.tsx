@@ -20,7 +20,7 @@ import {
         <IonHeader>
           <IonToolbar color="light">
             <IonTitle>FireFly</IonTitle>
-            <IonCheckbox slot="end" color="primary" />
+            <IonCheckbox slot="start" color="primary"/> RAD
           </IonToolbar>
         </IonHeader>
         <IonContent>

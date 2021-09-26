@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 export const NavButtons = () => {
   const [mQuery, setMQuery] = React.useState<any>({
-    matches: window.innerWidth > 768 ? true : false,
+    matches: window.innerWidth > 900 ? true : false,
   });
 
   useEffect(() => {
