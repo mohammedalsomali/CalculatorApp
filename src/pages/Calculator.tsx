@@ -45,9 +45,7 @@ const Calc: React.FC = () => {
     
     let calculated 
     let current = parseFloat(currentval)
-    console.log(current, prevval)
     if(prevval == 0 || currentval == '') return
-    console.log(current, prevval)
 
     switch (operator) {
       case '+':
@@ -96,9 +94,13 @@ const Calc: React.FC = () => {
   }
 
 
-  function trig_log( trig ){
+  function trig_log(trig){
     let current = parseInt(currentval)
     let calculated
+    console.log(current, prevval)
+
+    if(currentval == '') return
+    console.log(current, prevval)
 
     switch (trig) {
       case '^2':
