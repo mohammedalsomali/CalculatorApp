@@ -1,4 +1,4 @@
-import { IonButton, IonButtons, IonContent, IonHeader, IonGrid, IonMenuButton, IonPage, IonTitle, IonToolbar, IonCol, IonRow } from '@ionic/react';
+import { IonButton, IonButtons, IonContent, IonHeader, IonGrid, IonMenuButton, IonPage, IonTitle, IonToolbar, IonCol, IonRow, IonIcon } from '@ionic/react';
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
@@ -112,8 +112,19 @@ const Calc: React.FC = () => {
 
 
   function showhistory(){
+    const showdiv = document.querySelector<HTMLElement>('.historylog')
+    const hidediv = document.querySelector<HTMLElement>('.parentdiv')
+    const zerodiv = document.querySelector<HTMLElement>('.zerodiv')
+    
+    console.log(showdiv.style.display)
+    if(showdiv.style.display == 'block'){
+      showdiv.style.display = 'none'
+      hidediv.style.display = 'grid'
+      zerodiv.style.display = 'flex'
+      
+      return
+    }
 
-    const showdiv = document.querySelector('.historylog')
     for (let [k, v] of Object.entries(logdata)) {
       let logdiv = document.createElement('div')
       let logval = document.createElement('p')
@@ -125,6 +136,10 @@ const Calc: React.FC = () => {
       logdiv.appendChild(logres)
       showdiv.appendChild(logdiv)
     }
+    showdiv.style.display = 'block'
+    hidediv.style.display = 'none'
+    zerodiv.style.display = 'none'
+
   }
 
 
@@ -136,18 +151,24 @@ const Calc: React.FC = () => {
 
 
     <IonContent fullscreen>
-      <div className='historylog' style={{'display': 'hidden'}}></div>
+      <div className='historylog' style={{'display': 'none'}}></div>
 
-      <div className='resultsdiv' style={{ 'height': '32%', 'justifyContent': 'center', 'alignContent': 'center' }}>
-        <div style={{ 'height': '30%', 'color': 'pink' }}> {results} </div>
+      <div className='resultsparentdiv' style={{ 'height': '32%', 'justifyContent': 'center', 'alignContent': 'center' }}>
+        <div className='resultsdiv' style={{ 'height': '50%', 'color': 'pink' }}> {results} </div>
 
-        <div className='diaplaydiv' style={{ 'height': '30%', 'color': 'pink' }}> {displayvalue} </div>
+        <div className='diaplaydiv' style={{ 'height': '50%', 'color': 'pink' }}> {displayvalue} </div>
 
       </div>
 
 
 
       <div>
+        <div className='btndiv'>
+          <IonButton id='historybtn'  onClick={showhistory}>
+            <IonIcon></IonIcon>
+            
+          </IonButton>
+        </div>
         <div className="parentdiv">
           <div >
             <IonGrid >
@@ -158,13 +179,13 @@ const Calc: React.FC = () => {
                 <IonCol>
                 </IonCol>
                 <IonCol>
-                  <IonButton shape='round' size='large' onClick={() => operation('÷')}> ÷ </IonButton>
+                  <IonButton shape='round' size='large' onClick={() => operation('÷')} color="warning"> ÷ </IonButton>
                 </IonCol>
 
               </IonRow>
               <IonRow>
                 <IonCol>
-                  <IonButton shape='round' size='large' onClick={showhistory}> 7 </IonButton>
+                  <IonButton shape='round' size='large' onClick={() => CalcDisplay('8')}> 7 </IonButton>
                 </IonCol>
                 <IonCol>
                   <IonButton shape='round' size='large' onClick={() => CalcDisplay('8')}> 8 </IonButton>
@@ -222,7 +243,7 @@ const Calc: React.FC = () => {
 
           </div>
         </div>
-        <div>
+        <div className='zerodiv'>
           <IonGrid>
             <IonRow>
               <IonCol size='5.7'>
