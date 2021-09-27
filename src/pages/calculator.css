@@ -253,6 +253,12 @@ ion-col {
         width: 120px;
         /* width: 100px; */
     }
+    #historybtn {
+        height: 3px;
+        width: 80%;
+        --background: rgb(53, 53, 189);
+        
+    }
 
     
     

@@ -16,13 +16,27 @@ import React from "react";
 import {moon } from "ionicons/icons"
 import './Menu.css'
 import jQuery from 'jquery'
+import { togle } from "../pages/toggleevent"
+var tog = '0'
 
-  
   export const Menu = () => {
 
     const toggleDarkModeHandler = () => {
       document.body.classList.toggle("dark");
     };
+
+    const changetrig = () => {
+      if(tog == '0'){
+        tog = '1'
+      }
+      else {
+        tog = '0'
+      }
+        togle.changevalue(tog)
+    };
+
+
+
 
     return (
       <IonMenu  contentId="main">
@@ -54,6 +68,7 @@ import jQuery from 'jquery'
               <IonToggle
                 slot="start"
                 name="DEG"
+                onIonChange={changetrig}
               />
               DEG
 

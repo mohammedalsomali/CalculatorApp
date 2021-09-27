@@ -4,20 +4,27 @@ import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 import './calculator.css'
 import  $  from 'jquery'
+import {togle} from './toggleevent'
+
+
 
 let currentval = ''
 let prevval = 0
 let operator
-let algho
+
 
 
 
 const logdata = {}
 
+const myInitObject = {}
 
 
 const Calc: React.FC = () => {
-  
+
+  //this variable is to notify the trig function to use degrres or radians
+  var tog = togle.checked()
+
   const [displayvalue, setdisplayvalue] = useState([]);
   const [results, setresults] = useState('')
 
@@ -93,14 +100,14 @@ const Calc: React.FC = () => {
 
   }
 
-
+  // this function does the computations for the trig and log functions
   function trig_log(trig){
     let current = parseInt(currentval)
     let calculated
     console.log(current, prevval)
 
     if(currentval == '') return
-    console.log(current, prevval)
+    
 
     switch (trig) {
       case '^2':
@@ -109,29 +116,44 @@ const Calc: React.FC = () => {
         
 
         break
-      case 'ln':
-        calculated = Math.log(current)
+      case 'ln(':
+        calculated = Math.log( current )
         
         break
-      case 'log':
+      case 'log(':
         calculated = Math.log10(current)
-        // currentval = calculated
+        
         break
       case 'sin(':
-        calculated = Math.sin(current)
-        // currentval = calculated
+        if(tog == '0'){
+          calculated = Math.sin(current)
+        } else {
+          calculated = Math.sin(current * Math.PI / 180)
+        }
+        
         break
       case 'cos(':
-        calculated = Math.cos(current)
-        // currentval = calculated
+        if(tog == '0'){
+          calculated = Math.cos(current)
+        } else {
+          calculated = Math.cos(current * (3.14 / 180))
+        }
+        
         break
       case 'Tan(':
-        calculated = Math.tan(current)
-        // currentval = calculated
+        console.log(tog)
+        if(tog == '0'){
+          calculated = Math.tan(current)
+        } else {
+          calculated = Math.tan(current * 3.14 / 180)
+          console.log(tog)
+
+        }
+        
         break
       case '√':
         calculated = current ** (1 / 2)
-        // currentval = calculated
+        
         break
 
       default:
@@ -145,9 +167,10 @@ const Calc: React.FC = () => {
       logdata[calculated] =  trig +  ' ' + currentval + ' ' +  '='
 
     }
-    console.log(logdata)
+    
     currentval = calculated
     current = 0
+    console.log(currentval)
     setresults(currentval)
     prevval = parseFloat(currentval)
     currentval = ''
